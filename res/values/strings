@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pentomino</string>
+
+    <string name="btn_left">Left</string>
+    <string name="btn_right">Right</string>
+    <string name="btn_hflip">Hflip</string>
+    <string name="btn_vflip">Vflip</string>
+    <string name="btn_check">Check</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_list">List</string>
+    <string name="btn_view">View</string>
+    <string name="btn_help">Help</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_ok">OK</string>
+
+    <string name="ask_reset">Reset the board ?</string>
+
+    <string name="no_match">No matching solution</string>
+    <string name="no_close">No close solution</string>
+    <string name="new_solution">New solution %1$s</string>
+    <string name="no_solution">Inexistent</string>
+    <string name="no_name">Missing name</string>
+    
+
+<string name="help">
+Pentomino is a a board game. 
+BR
+
+There are 13 pieces and the purpose of the game is to place them on the 8x8 board without overlapping. 
+To place a piece on the board select it with a tap, and tap on the board cell where you want to place it.
+To remove a piece from the board tap on it in the board.
+The menu "Reset" clear the boards.
+BR
+
+The pieces can be rotated or flipped over with the buttons of the left.
+BR
+
+When the board is completed, 
+the solution number is displayed in the text box.
+If the solution is new it is added to the saved solutions.
+Arrangements that differ by a 90 degree rotation or by a flip are not distinguished.
+The number of solutions that you have found is shown in the title.
+BR
+
+With a completed board the button "View" lists the solutions that differ by at most 6 pieces from your solution.
+If the board is partially filled the button "View" lists the solutions that match the pieces on the board.
+Tapping on a number in the list displays the solution in the mini-board.
+If you type a solution number in the text field, when the board is empty, the solution 
+is shown in the main board.
+BR
+
+The saved solutions are stored in the file Android/data/com.pentomino/pentomino.txt (in the external storage).
+BR
+
+</string>
+
+</resources>

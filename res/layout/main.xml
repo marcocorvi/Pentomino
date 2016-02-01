@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+      <!-- LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+      -->
+        <!-- Button 
+          android:id="@+id/btn_check"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_check"
+        / -->
+        <!-- EditText 
+           android:id="@+id/name"
+           android:layout_height="wrap_content"
+           android:layout_width="80dp"
+           android:singleLine="true"
+           android:text=""
+           android:inputType="number"
+        / -->
+        <!-- Button 
+          android:id="@+id/btn_save"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_save"
+        / -->
+        <!-- Button 
+          android:id="@+id/btn_view"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_view"
+        / -->
+        <!-- Button 
+          android:id="@+id/btn_list"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_list"
+        / -->
+        <!-- LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right"
+            android:gravity="right"
+        >
+          <Button 
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/btn_reset"
+          />
+        </LinearLayout -->
+      <!-- /LinearLayout -->
+
+      <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+      >
+        <Button 
+          android:id="@+id/btn_left"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/left"
+        />
+        <Button 
+          android:id="@+id/btn_hflip"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/hflip"
+          android:layout_marginLeft="10dip"
+        />
+        <Button 
+          android:id="@+id/btn_vflip"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/vflip"
+          android:layout_marginLeft="10dip"
+        />
+        <Button 
+          android:id="@+id/btn_right"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/right"
+          android:layout_marginLeft="10dip"
+        />
+        <EditText 
+          android:id="@+id/name"
+          android:layout_height="wrap_content"
+          android:layout_width="60dp"
+          android:singleLine="true"
+          android:text=""
+          android:inputType="number"
+          android:layout_marginLeft="10dip"
+        />
+        <Button 
+          android:id="@+id/btn_view"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/btn_view"
+          android:layout_marginLeft="10dip"
+        />
+      </LinearLayout>
+
+
+      <com.pentomino.PentaView
+           android:id="@+id/penta_view"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+         />
+
+
+</LinearLayout>
+
