@@ -76,7 +76,7 @@ public class PentaView extends SurfaceView
     Paint mPaintBlack;
     Paint mPaintGrey;
 
-    SurfaceHolder mHolder;
+    SurfaceHolder mHolder = null;
     MyThread mThread;
     boolean  mHasSurface;
 
@@ -90,8 +90,8 @@ public class PentaView extends SurfaceView
       makePaints();
       makePieces();
       clearTiles();
-      mHolder = getHolder();
-      mHolder.addCallback( this );
+      // mHolder = getHolder();
+      getHolder().addCallback( this );
       mHasSurface = false;
       mThread = null;
     }      
@@ -140,7 +140,7 @@ public class PentaView extends SurfaceView
 
     public void resume()
     {
-      Log.v("Penta", "PentaView resume hasSurface " + mHasSurface );
+      // Log.v("Penta", "PentaView resume hasSurface " + mHasSurface );
 
       SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences( mContext );
       String str = sp.getString( "PENTA_BOARD", null );
@@ -155,9 +155,11 @@ public class PentaView extends SurfaceView
       }
       
       if ( mThread == null ) {
-        mThread = new MyThread( mHolder );
+        // Log.v("Penta", "PentaView create thread");
+        mThread = new MyThread();
       }
       if ( mHasSurface && mThread != null ) {
+        // Log.v("Penta", "PentaView start thread");
         mThread.start();
       }
     }
@@ -171,14 +173,21 @@ public class PentaView extends SurfaceView
       editor.commit();
 
       if ( mThread != null ) {
+        // Log.v("Penta", "PentaView stop thread");
         mThread.doExit();
         mThread = null;
       }
+      // mHolder = null;
     }
 
     public void surfaceCreated( SurfaceHolder holder )
     {
       // Log.v("Penta", "PentaView surface created ");
+      if ( mHolder != holder ) {
+        // Log.v("Penta", "PentaView set holder");
+        mHolder = holder;
+        mHolder.addCallback( this );
+      }
       mHasSurface = true;
       resume();
       // if ( mThread != null ) {
@@ -196,20 +205,23 @@ public class PentaView extends SurfaceView
     { 
       // Log.v("Penta", "PentaView surface changed " + w + " " + h );
       onWindowResize( w, h );
-      if ( mThread != null ) {
-        // TODO ???
+      if ( mHolder != holder ) {
+        // Log.v("Penta", "PentaView set holder");
+        mHolder = holder;
+        mHolder.addCallback( this );
+        if ( mThread != null ) {
+          // TODO ???
+        }
       }
     }
 
     class MyThread extends Thread
     {
       private boolean done;
-      SurfaceHolder holder;
 
-      MyThread( SurfaceHolder hld ) 
+      MyThread( ) 
       {
         super();
-        holder = hld;
         done = false;
         // Log.v("Penta", "Penta thread created");
       }
@@ -217,17 +229,21 @@ public class PentaView extends SurfaceView
       @Override
       public void run()
       {
-        Log.v("Penta", "Penta thread run: holder is " + ( (holder==null)? "null" : "non-null") );
         while ( ! done ) {
-          Canvas canvas = null;
-          // do {
-            canvas = holder.lockCanvas();
-          //   if ( canvas == null ) {
-          //     try { sleep( 100 ); } catch ( InterruptedException e ) { }
-          //   }
-          // } while ( canvas == null );
-          drawOn( canvas );
-          holder.unlockCanvasAndPost( canvas );
+          if ( mHolder != null ) {
+            Canvas canvas = null;
+            // do {
+              canvas = mHolder.lockCanvas();
+            //   if ( canvas == null ) {
+            //     try { sleep( 100 ); } catch ( InterruptedException e ) { }
+            //   }
+            // } while ( canvas == null );
+            drawOn( canvas );
+            mHolder.unlockCanvasAndPost( canvas );
+          } else {
+            // Log.v("Penta", "Penta thread run: holder " + ( (mHolder==null)? "null" : "non-null") );
+            try { sleep( 40 ); } catch ( InterruptedException e ) { }
+          }
         }
         // Log.v("Penta", "Penta thread done");
       }
@@ -330,7 +346,7 @@ public class PentaView extends SurfaceView
       mTileSize = ( ww < 300 )? 20 : (ww < 600)? 48 : (80 * ww)/768;
       mMiniTileSize = ( ww < 300 )? 6 : mTileSize/4;
 
-      Log.v( "Penta", "Set size " + ww + " " + hh + " dpi " + dpi + " Tile size " + mTileSize + " " + mMiniTileSize );
+      // Log.v( "Penta", "Set size " + ww + " " + hh + " dpi " + dpi + " Tile size " + mTileSize + " " + mMiniTileSize );
       onWindowResize( ww, hh );
     }
     
